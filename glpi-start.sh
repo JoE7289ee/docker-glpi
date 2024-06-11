@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Check and set the GLPI version or use the latest if not specified
-[[ ! "$VERSION_GLPI" ]] \
-  && VERSION_GLPI=$(curl -s https://api.github.com/repos/glpi-project/glpi/releases/latest | grep tag_name | cut -d '"' -f 4)
-
 if [[ -z "${TIMEZONE}" ]]; then
   echo "TIMEZONE is unset"
 else
@@ -27,7 +23,7 @@ fi
 if [ -d "${FOLDER_WEB}${FOLDER_GLPI}/bin" ]; then
   echo "GLPI is already installed"
 else
-  git clone --branch ${VERSION_GLPI} https://github.com/glpi-project/glpi.git ${FOLDER_WEB}${FOLDER_GLPI}
+  git clone https://github.com/glpi-project/glpi.git ${FOLDER_WEB}${FOLDER_GLPI}
 fi
 
 # Set ownership and permissions
