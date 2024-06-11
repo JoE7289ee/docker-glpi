@@ -28,8 +28,12 @@ if [ -d "${FOLDER_WEB}${FOLDER_GLPI}/bin" ]; then
   echo "GLPI is already installed"
 else
   git clone --branch ${VERSION_GLPI} https://github.com/glpi-project/glpi.git ${FOLDER_WEB}${FOLDER_GLPI}
-  chown -R www-data:www-data ${FOLDER_WEB}${FOLDER_GLPI}
 fi
+
+# Set ownership and permissions
+chown -R www-data:www-data ${FOLDER_WEB}${FOLDER_GLPI}
+find ${FOLDER_WEB}${FOLDER_GLPI} -type d -exec chmod 755 {} \;
+find ${FOLDER_WEB}${FOLDER_GLPI} -type f -exec chmod 644 {} \;
 
 # Adapt the Apache server according to the version of GLPI installed
 LOCAL_GLPI_VERSION=$(cat ${FOLDER_WEB}${FOLDER_GLPI}/version)
