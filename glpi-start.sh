@@ -23,7 +23,7 @@ fi
 if [ -d "${FOLDER_WEB}${FOLDER_GLPI}/bin" ]; then
   echo "GLPI is already installed"
 else
-  git clone https://github.com/glpi-project/glpi.git ${FOLDER_WEB}${FOLDER_GLPI}
+  git clone https://github.com/glpi-project/glpi ${FOLDER_WEB}${FOLDER_GLPI}
 fi
 
 # Set ownership and permissions
